@@ -21,11 +21,13 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    initPlatformState();
+    // initPlatformState();
+    FlutterGroups.init("test.com.test");
   }
   // Platform messages are asynchronous, so we initialize in an async method.
   Future<void> initPlatformState() async {
-
+    print("initPlatformState");
+    FlutterGroups.setInt("name", value: 1);
   }
 
   @override
@@ -36,7 +38,16 @@ class _MyAppState extends State<MyApp> {
           title: const Text('Plugin example app'),
         ),
         body: Center(
-          child: Text('Running on: $_platformVersion\n'),
+          child: GestureDetector(
+            onTap: (){
+              initPlatformState();
+            },
+            child: Container(
+              width: 100,
+              height: 50,
+              color: Colors.red,
+            ),
+          ),
         ),
       ),
     );

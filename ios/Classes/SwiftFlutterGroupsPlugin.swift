@@ -15,9 +15,10 @@ public class SwiftFlutterGroupsPlugin: NSObject, FlutterPlugin {
   public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
       let method = call.method;
       let argument = call.arguments
-      switch(method){
+      switch method {
       case "init":
-          result(initName(getArgumentString(argument)))
+          initName(getArgumentString(argument))
+          result(true)
       case "getGroupString":
           result(getGroupString(getArgumentString(argument)))
       case "getGroupInt":
@@ -27,24 +28,27 @@ public class SwiftFlutterGroupsPlugin: NSObject, FlutterPlugin {
       case "setGroupString":
           let map = getArgumentKeyString(argument)
           guard let maps = map else {
-              result(0)
+              result(false)
               return
           }
-          result(setGroup(maps.key ,value: maps.value))
+          setGroup(maps.key ,value: maps.value)
+          result(true)
       case "setGroupInt":
           let map = getArgumentKeyInt(argument)
           guard let maps = map else {
-              result(0)
+              result(false)
               return
           }
-          result(setGroup(maps.key ,value: maps.value))
+          setGroup(maps.key ,value: maps.value)
+          result(true)
       case "setGroup":
           let map = getArgumentKeyAny(argument)
           guard let maps = map else {
-              result(0)
+              result(false)
               return
           }
-          result(setGroup(maps.key ,value: maps.value))
+          setGroup(maps.key ,value: maps.value)
+          result(false)
       default:
           break
       }
