@@ -14,7 +14,7 @@ class FlutterGroups {
     return await _channel.invokeMethod("getGroupString", name);
   }
 
-  static Future<String> getInt(String name) async{
+  static Future<int> getInt(String name) async{
     return await _channel.invokeMethod("getGroupInt", name);
   }
 
